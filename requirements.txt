@@ -4,3 +4,4 @@ cs50
 Werkzeug
 psycopg2-binary
 gunicorn
+requests
