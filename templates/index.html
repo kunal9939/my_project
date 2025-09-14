@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Insert Expense
+{% endblock %}
+  
+{% block main %}
+
+    <div class="container">
+            <div class="section">
+
+                <h2>Add an Expense</h2>
+                <form action="/" method="post">
+                    <div class="date">
+                        <h4>Date(d-m-y)</h4>
+                        <input name="day" type="text" id="day" required readonly>
+                        <!-- <select name="month" id="month">
+                            <option disabled selected value=""></option>
+                            {% for month in months %}
+                                <option value="{{ month }}">{{ month }}</option>
+                            {% endfor %}
+                         </select> -->
+                        <input name="month" type="text" id="month" required readonly>
+                        <input name="year" type="text" id="year" required readonly>
+                    </div>
+                    <div class="date">
+                        <!-- <input name="Category" type="text" autocomplete="off" autofocus placeholder="Category"> -->
+                         <select name="categry">
+                            <option disabled selected value="">Category</option>
+                            {% for item in category %}
+                                <option value="{{ item }}">{{ item }}</option>
+                            {% endfor %}
+                         </select>
+                        <input name="description" type="text" autocomplete="off" placeholder="Description">
+                        <input name="expense" type="integer" autocomplete="off" placeholder="Amount" required>
+                    </div>
+                    <button type="submit">Add Expense</button>
+                </form>
+ 
+                <script> 
+                    monthName = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"
+                    ]
+
+                    const today = new Date();
+                    const dd = today.getDate();
+                    const mm = today.getMonth();
+                    const yy = today.getFullYear();
+
+                    document.getElementById("day").value = dd;
+                    document.getElementById("month").value = monthName[mm];
+                    document.getElementById("year").value = yy;
+                </script>
+            </div> 
+
+{% endblock %}

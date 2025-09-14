@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Table
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="section"> 
+            <h2>All the Expenses</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>SI No.</th>
+                            <th>Day</th>
+                            <th>Month</th>
+                            <th>Year</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if data %}
+                            {% for element in data %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ element.day }}</td>
+                                <td>{{ element.month }}</td>
+                                <td>{{ element.year }}</td>
+                                <td>{{ element.category }}</td>
+                                <td>{{ element.description }}</td>
+                                <td>{{ element.amount }}</td>
+                                <td>
+                                    <form action="/delete" method="post">
+                                        <input name="id" hidden value="{{ element.id }}">
+                                        <button type="submit" id="remv">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="7" style="text-align:center;">No records found.</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>    
+            </div>
+            <div class="ex">
+                <h2 style="text-align: end;">Total Expenditure = ₹  {{ expense }}</h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}

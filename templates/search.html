@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Expense
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="section">
+            <form action="/search" method="post">
+                    <h2>Search for Expense</h2>
+                    <div class="date">
+                        <select name="categry">
+                            <option disabled selected value="">Select Category</option>
+                            {% for item in category %}
+                                <option value="{{ item }}">{{ item }}</option>
+                            {% endfor %}
+                        </select>
+                    
+
+                    <!-- <h4>SELECT DAY:</h4> -->
+                    
+                        <input type="text" placeholder="Enter Day" name="day" class="ab" id="day" min="1" max="31" >
+                    
+
+                    <!-- <h4>SELECT MONTH:</h4> -->
+                    
+                       <select name="months" class="ab">
+                            <option disabled selected value="">Select Months</option>
+                            {% for month in months %}
+                                <option value="{{ month }}">{{ month }}</option>
+                            {% endfor %}
+                        </select>
+                    
+
+                    <!-- <h4>ENTER YEAR:</h4> -->
+                    
+                        <input type="text" placeholder="Enter Year" name="year" class="ab" id="year" pattern="^2[0-1][0-9][0-9]$" required>
+                    </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const year = new Date().getFullYear();
+
+        document.getElementById("year").value = year;
+    </script>
+
+{% endblock %}
+
+
